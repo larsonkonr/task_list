@@ -15,11 +15,11 @@
   <tbody>
     <% @tasks.each do |task| %>
       <tr class="search-item">
-        <td id=""><a href="#"><img src="<%= task.image %>" alt="" height="42" width="42"/></a></td>
-        <td id=""><a href="#"><%= task.title %></a></td>
-        <td id=""><a href="#"><%= task.description %></a></td>
-        <td id=""><a href="#"><%= task.due_date %></a></td>
-        <td id=""><a href="#"><%= task.status %>
+        <td id=""><img src="<%= task.image %>" alt="" height="42" width="42"/></td>
+        <td id=""><%= task.title %></td>
+        <td id=""><%= task.description %></td>
+        <td id=""><%= task.due_date %></td>
+        <td id="">
           <%= check_box("task", task.id, { checked: task.status, class: "task-check" }) %> </a></td>
         <td id=""><a href="#"><%= button_to "Edit Task", edit_list_task_path(@list.id, task), method: :get %></a></td>
       <script type="text/javascript">
@@ -44,5 +44,8 @@
     <% end %>
   </tbody>
 </table>
-
-<%= link_to 'Completed Tasks', list_path(@list.id, status: true) %>
+<% if params[:status] && params[:status] == "true" %>
+  <%= link_to "Back", list_path(@list.id) %>
+<% else %>
+  <%= link_to 'Completed Tasks', list_path(@list.id, status: true) %>
+<% end %>

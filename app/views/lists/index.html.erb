@@ -14,4 +14,8 @@
   </ul>
   <% end %>
 </div>
-<%= link_to 'Archived Lists', lists_path(archived: true) %>
+<% if params[:archived] && params[:archived] == "true" %>
+  <%= link_to "Back", root_path %>
+<% else %>
+  <%= link_to 'Archived Lists', lists_path(archived: true) %>
+<% end %>
