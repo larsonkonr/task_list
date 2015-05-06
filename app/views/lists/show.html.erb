@@ -5,4 +5,6 @@
   <p>Task: <%= task.title %></p>
   <p>Description: <%= task.description %></p>
   <p>Due Date: <%= task.due_date %></p><br>
+  <%= button_to "Edit Task", edit_list_task_path(@list.id, task), method: :get %>
 <% end %>
+<%= link_to 'Completed Tasks', list_tasks_path(@list.id, status: true) %>

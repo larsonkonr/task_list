@@ -1,0 +1,7 @@
+<h2><%= "Update #{@list.title}" %></h2>
+<%= form_for @list do |f| %>
+  Title:<%= f.text_field :title, placeholder: @list.title %><br>
+  Description:<%= f.text_field :description, placeholder: @list.description %><br>
+  Archived: <%= f.check_box(:archived) %>
+  <%= f.submit "Update List" %>
+<% end %>

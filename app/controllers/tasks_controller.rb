@@ -1,6 +1,7 @@
 class TasksController < ApplicationController
   def index
-    @lists = List.where(archived: false)
+    list = List.find(params[:list_id])
+    redirect_to list_path(list)
   end
 
   def new
@@ -12,6 +13,15 @@ class TasksController < ApplicationController
     task = Task.create(task_params)
     list.tasks << task
     redirect_to list_path(list)
+  end
+
+  def edit
+    @task = Task.find(params[:id])
+  end
+
+  def update
+    Task.update(params[:id], task_params)
+    redirect_to list_path(params[:list_id])
   end
 
   private
