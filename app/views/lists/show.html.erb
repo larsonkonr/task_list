@@ -1,6 +1,9 @@
 <h1><%= @list.title %></h1>
 <h3><%= @list.description %></h3>
 <%= link_to "Create Task", new_list_task_path(@list.id), method: :get %>
+<form class="form-inline top-search shadowed">
+  <input type="text" id="search-bar" class="form-control" placeholder="Search for anything...">
+</form>
 <table id="myTable" class="tablesorter">
   <thead>
     <tr class="spacer">
