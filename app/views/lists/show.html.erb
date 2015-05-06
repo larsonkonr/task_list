@@ -4,6 +4,7 @@
 <table id="myTable" class="tablesorter">
   <thead>
     <tr class="spacer">
+      <th id="">Image</th>
       <th id="">Task</th>
       <th id="">Description</th>
       <th id="">Due Date</th>
@@ -12,27 +13,29 @@
     </tr>
   </thead>
   <tbody>
-    <% @list.tasks.each do |task| %>
+    <% @tasks.each do |task| %>
       <tr class="search-item">
+        <td id=""><a href="#"><img src="<%= task.image %>" alt="" height="42" width="42"/></a></td>
         <td id=""><a href="#"><%= task.title %></a></td>
         <td id=""><a href="#"><%= task.description %></a></td>
         <td id=""><a href="#"><%= task.due_date %></a></td>
-        <td id=""><a href="#"><%= check_box_tag 'completed', task.id , task.status, :class => "task-check" %></a></td>
+        <td id=""><a href="#"><%= task.status %>
+          <%= check_box("task", task.id, { checked: task.status, class: "task-check" }) %> </a></td>
         <td id=""><a href="#"><%= button_to "Edit Task", edit_list_task_path(@list.id, task), method: :get %></a></td>
       <script type="text/javascript">
-      $(".task-check").bind('change', function(){
+      $(".task-check").on('change', function(){
       if (this.checked){
         $.ajax({
-          url: '/lists/'+this.value+'/tasks/'+ <%= task.id %> +'/toggle',
+          url: '/lists/'+ <%= @list.id %> +'/tasks/'+ <%= task.id %> +'/toggle',
           type: 'POST',
-          data: {"status": this.checked}
+          data: {"status": "true"}
         });
       }
       else {
         $.ajax({
-          url: '/lists/'+this.value+'/tasks/'+ <%= task.id %> +'/toggle',
+          url: '/lists/'+<%= @list.id %>+'/tasks/'+ <%= task.id %> +'/toggle',
           type: 'POST',
-          data: {"status": this.checked}
+          data: {"status": "false"}
         });
       }
       });
@@ -42,5 +45,4 @@
   </tbody>
 </table>
 
-
-<%= link_to 'Completed Tasks', list_tasks_path(@list.id, status: true) %>
+<%= link_to 'Completed Tasks', list_path(@list.id, status: true) %>

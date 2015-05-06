@@ -3,6 +3,6 @@
   <%= f.text_field :title %>
   <%= f.text_field :description %>
   <%= f.date_field :due_date %>
-  <%= f.hidden_field :task_list, value: @list.id %>
+  <%= f.file_field :image %>
   <%= f.submit "Make Task" %>
 <% end %>

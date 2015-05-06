@@ -28,13 +28,12 @@ class TasksController < ApplicationController
     @task = Task.find(params[:id])
 
     if @task.update_attributes(:status => params[:status])
-      render
     end
   end
 
   private
 
   def task_params
-    params.require(:task).permit(:title, :description, :due_date)
+    params.require(:task).permit(:title, :description, :due_date, :image)
   end
 end

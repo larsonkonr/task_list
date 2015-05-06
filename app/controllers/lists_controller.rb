@@ -19,6 +19,11 @@ class ListsController < ApplicationController
 
   def show
     @list = List.find(params[:id])
+    if params[:status] && params[:status] == "true"
+      @tasks = @list.tasks.where(status: true)
+    else
+      @tasks = @list.tasks.where(status: false)
+    end
   end
 
   def edit
