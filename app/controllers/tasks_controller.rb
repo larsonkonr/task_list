@@ -20,8 +20,15 @@ class TasksController < ApplicationController
   end
 
   def update
-    Task.update(params[:id], task_params)
-    redirect_to list_path(params[:list_id])
+    if task_params.include?("image") == false
+      task = Task.find(params[:id])
+      task.image.destroy
+      Task.update(params[:id], task_params)
+      redirect_to list_path(params[:list_id])
+    else
+      Task.update(params[:id], task_params)
+      redirect_to list_path(params[:list_id])
+    end
   end
 
   def toggle
