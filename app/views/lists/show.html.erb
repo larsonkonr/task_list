@@ -19,27 +19,28 @@
         <td id=""><a href="#"><%= task.due_date %></a></td>
         <td id=""><a href="#"><%= check_box_tag 'completed', task.id , task.status, :class => "task-check" %></a></td>
         <td id=""><a href="#"><%= button_to "Edit Task", edit_list_task_path(@list.id, task), method: :get %></a></td>
+      <script type="text/javascript">
+      $(".task-check").bind('change', function(){
+      if (this.checked){
+        $.ajax({
+          url: '/lists/'+this.value+'/tasks/'+ <%= task.id %> +'/toggle',
+          type: 'POST',
+          data: {"status": this.checked}
+        });
+      }
+      else {
+        $.ajax({
+          url: '/lists/'+this.value+'/tasks/'+ <%= task.id %> +'/toggle',
+          type: 'POST',
+          data: {"status": this.checked}
+        });
+      }
+      });
+      </script>
       </tr>
     <% end %>
   </tbody>
 </table>
-<script type="text/javascript">
-$(".task-check").bind('change', function(){
-if (this.checked){
-  $.ajax({
-    url: '/lists/'+this.value+'/tasks/'+ <%= @list.id %> +'/toggle',
-    type: 'POST',
-    data: {"status": this.checked}
-  });
-}
-else {
-  $.ajax({
-    url: '/lists/'+this.value+'/tasks/'+ <%= @list.id %> +'/toggle',
-    type: 'POST',
-    data: {"status": this.checked}
-  });
-}
-});
-</script>
+
 
 <%= link_to 'Completed Tasks', list_tasks_path(@list.id, status: true) %>
