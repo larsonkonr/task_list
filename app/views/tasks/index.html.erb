@@ -1,0 +1,11 @@
+<div class="new-task">
+  <%= link_to "Make List", new_list_path, method: :get %><br>
+</div>
+<div class="lists">
+  <% @lists.each do |list| %>
+    <ul>
+      <li class="list", id=<%= list.id%>><%= link_to list.title, list_path(list) %>
+    </li>
+  </ul>
+  <% end %>
+</div>

@@ -1,0 +1,7 @@
+Make a List <br><br>
+
+<%= form_for :lists, url: lists_path do |f| %>
+  Title:<%= f.text_field :title %><br><br>
+  Description:<%= f.text_field :description %><br>
+  <%= f.submit "Make List" %>
+<% end %>

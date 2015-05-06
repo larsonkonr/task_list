@@ -1,0 +1,8 @@
+<h1>Make a New Task</h1>
+<%= form_for :task, url: list_tasks_path do |f| %>
+  <%= f.text_field :title %>
+  <%= f.text_field :description %>
+  <%= f.date_field :due_date %>
+  <%= f.hidden_field :task_list, value: @list.id %>
+  <%= f.submit "Make Task" %>
+<% end %>

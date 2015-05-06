@@ -1,1 +1,15 @@
-Home
+<h2>WunderListClone</h2>
+<h3>ToDo Lists</h3>
+<h4><%= link_to "Make List", new_list_path %></h4>
+<div class="lists">
+  <% @lists.each do |list| %>
+    <ul>
+      <li class="list", id=<%= list.id%>><%= link_to list.title, list_path(list) %><br>
+        <%= list.description %><br>
+    <button class="archive-list">
+      Archive List
+    </button>
+    </li>
+  </ul>
+  <% end %>
+</div>
