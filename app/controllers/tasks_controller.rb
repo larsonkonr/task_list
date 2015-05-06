@@ -24,6 +24,14 @@ class TasksController < ApplicationController
     redirect_to list_path(params[:list_id])
   end
 
+  def toggle
+    @task = Task.find(params[:id])
+
+    if @task.update_attributes(:status => params[:status])
+      render
+    end
+  end
+
   private
 
   def task_params
