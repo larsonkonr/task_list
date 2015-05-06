@@ -27,11 +27,11 @@ ActiveRecord::Schema.define(version: 20150506092144) do
   create_table "tasks", force: :cascade do |t|
     t.string   "title"
     t.string   "description"
-    t.boolean  "status"
+    t.boolean  "status",             default: false
     t.date     "due_date"
     t.integer  "list_id"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
     t.string   "image_file_name"
     t.string   "image_content_type"
     t.integer  "image_file_size"
